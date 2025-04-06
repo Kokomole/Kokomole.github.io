@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kokomole.github.io</id>
     <title>2014色彩漫游</title>
-    <updated>2025-04-06T03:47:59.807Z</updated>
+    <updated>2025-04-06T03:55:06.836Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kokomole.github.io"/>
     <link rel="self" href="https://kokomole.github.io/atom.xml"/>
@@ -1173,28 +1173,6 @@ dplyr::select(ChickWeight, Time:weight)
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[摘抄]]></title>
-        <id>https://kokomole.github.io/post/old-poetry/</id>
-        <link href="https://kokomole.github.io/post/old-poetry/">
-        </link>
-        <updated>2020-08-25T15:49:58.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="晚秋-虞信">晚秋 / 虞信</h1>
-<blockquote>
-<center>凄清临晚景，疏索望寒阶。</center>
-<center>湿庭凝坠露，抟风卷落槐。</center>
-<center>日气斜还冷，云峯晚更霾。</center>
-<center>可怜数行雁，点点远空排。</center>
-</blockquote>
-<h1 id="夜归-周密">夜归 / 周密</h1>
-<blockquote>
-<center>夜深归客倚筇行，</center>
-<center>冷磷依萤聚土塍。</center>
-<center>村店月昏泥径滑，</center>
-<center>竹窗斜漏补衣灯。</center>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[ggplot画图]]></title>
         <id>https://kokomole.github.io/post/ggplot-note/</id>
         <link href="https://kokomole.github.io/post/ggplot-note/">
@@ -1601,6 +1579,23 @@ $SIGMA
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><msub><mi>E</mi><mi>m</mi></msub><mo>⋅</mo><mfrac><msup><mi>τ</mi><mi>n</mi></msup><mrow><mn>1</mn><mo>+</mo><msup><mi>τ</mi><mi>n</mi></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">y=E_m \cdot\frac{\tau^n}{1+\tau^n}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.110722em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.341392em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.590392em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>事实上，直角双曲线仅仅是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>时的特例。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[说一说在我老家，庄稼的种植情况]]></title>
+        <id>https://kokomole.github.io/post/dgggj/</id>
+        <link href="https://kokomole.github.io/post/dgggj/">
+        </link>
+        <updated>2020-07-08T16:07:32.000Z</updated>
+        <content type="html"><![CDATA[<p>本文作者是大咕咕咕鸡。</p>
+<blockquote>
+<p>我老家，加利福利亚深处的一个小村子。安第斯山脚下，叶尼塞河入海口。终年云雾缭绕。每家都有很大的一块地，靠农业为生。首先我们种上“bobo”，这是一种速生的草本植物，三个月左右成熟。果实粉红色，足球大小。表面光滑。每株能结两到三枚。采摘的时机在夏天的某个夜晚，云层低沉，风从北边刮来。我们举着火把在田间守候。当月亮升起到最高点的时候，成年雌性土拨鼠们会聚集在bobo树下，深情合唱加利福利亚民间歌曲“一个没有骆驼的人”，这时村里的海豹们迅速爬上树梢，用双前手有节奏的交替敲击果实根部，与歌声对位。歌曲结束时bobo果愉悦的脱落，被守候在树下的村民用网兜提留走。一定要在太阳升起之前完成采摘工作，bobo果见光会长出粗壮鸡腿，向南方逃逸。速度极快。</p>
+<p>接下来我们给田里注稀释过的咳嗽糖浆，撒糖醋鲤鱼鱼苗，种上水稻。一种南加利福利亚特有的品种。植株极大，参天，浓荫，阳光从叶面间漏下，扎入水中。糖醋鲤鱼们顺着光柱攀爬，在林间嬉戏。而年轻的人们会划船在水面幽会，捕捉糖醋鲤鱼，互诉衷肠。那是一年中最美好的时刻。</p>
+<p>成熟的稻子被用来祭祀。在秋天的最后一个晚上，日落后人们闭门不出，熄灭所有火光。等待大片的黑甲虫涌入，洪水般席卷稻田，等待黑色吞噬黄色，瞬间将水稻连根采摘干净。等待离去。</p>
+<p>然后我们迅速把水排干，种上棉花。</p>
+<p>在冬天我们结伴打猎。雪地里有一种野生老王出没，成群。一月底是最肥美的时候。老猎人集体，套大皮袄子，扛双开叉弹弓。牵大狼一个狗。</p>
+<p>狩猎冬天。</p>
+</blockquote>
 ]]></content>
     </entry>
 </feed>
