@@ -178,7 +178,7 @@ main {
 
 .post-row {
   display: grid;
-  grid-template-columns: 56px 112px minmax(0, 1fr);
+  grid-template-columns: 66px 112px minmax(0, 1fr);
   align-items: baseline;
 }
 
@@ -187,7 +187,8 @@ main {
   align-items: center;
   gap: 6px;
   padding-right: 10px;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.75;
   color: var(--text-dim);
   font-variant-numeric: tabular-nums;
@@ -231,7 +232,8 @@ main {
 
 .year-inline {
   display: none;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--text-dim);
   font-variant-numeric: tabular-nums;
   margin: 8px 0 0;
@@ -474,7 +476,7 @@ main {
   }
 
   .post-row {
-    grid-template-columns: 88px minmax(0, 1fr);
+    grid-template-columns: 96px minmax(0, 1fr);
   }
 
   .year-cell {
