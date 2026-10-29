@@ -1,7 +1,7 @@
-name: Import legacy posts
+name: Import / update legacy posts
 
-# 一次性使用：把 legacy/*.md 批量建成 issue。
-# 注意：GITHUB_TOKEN 创建的 issue 不会触发其他工作流，
+# 把 legacy/*.md 同步成 issue：没有就新建，已存在就原地更新正文（保留编号与评论）。
+# 注意：用 GITHUB_TOKEN 改 issue 不会触发其他工作流，
 # 所以跑完这个之后要手动再运行一次 "Build & Deploy"。
 
 on:
@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Create issues from legacy/*.md
+      - name: Sync legacy/*.md to issues
         run: node scripts/import-legacy.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

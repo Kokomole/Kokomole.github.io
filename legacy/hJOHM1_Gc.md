@@ -16,41 +16,53 @@
 
 ### 2.1 母药的吸收转运
 
-OXC的吸收过程使用absorption transit compartments描述，共有3个转运室（n\=3n=3n\=3），吸收室之间转运速率常数为ktrk\_{tr}ktr​，平均转运时间为MTTMTTMTT，参数之间的关系为
+OXC的吸收过程使用absorption transit compartments描述，共有3个转运室（$n=3$），吸收室之间转运速率常数为$k_{tr}$，平均转运时间为$MTT$，参数之间的关系为
 
-(1)ktr\=n+1MTTk\_{tr}=\\frac{n+1}{MTT} \\tag{1} ktr​\=MTTn+1​(1)
+$$
+k_{tr}=\frac{n+1}{MTT} \tag{1}
+$$
 
-n+1n+1n+1是因为最后一个转运室到中央时的转运速率也认为是ktrk\_{tr}ktr​，即ka\=ktrk\_a=k\_{tr}ka​\=ktr​。
+$n+1$是因为最后一个转运室到中央时的转运速率也认为是$k_{tr}$，即$k_a=k_{tr}$。
 
 ### 2.2 母药的分布
 
-OXC使用二室模型描述，房室间转运率为QQQ，中央室、外周室的分布容积分别为VcV\_cVc​、VpV\_pVp​。
+OXC使用二室模型描述，房室间转运率为$Q$，中央室、外周室的分布容积分别为$V_c$、$V_p$。
 
 ### 2.3 母药向代谢物的转化
 
-OXC的消除一部分是以原型药直接排出体外，另一部分是转化为代谢物MHD，母药的清除率为CLOXCCL\_{OXC}CLOXC​，向代谢物转化的比例等于FmetF\_{met}Fmet​，故转化为代谢物的部分为
+OXC的消除一部分是以原型药直接排出体外，另一部分是转化为代谢物MHD，母药的清除率为$CL_{OXC}$，向代谢物转化的比例等于$F_{met}$，故转化为代谢物的部分为
 
-(2)CLm\=CLOXC×FmetCL\_m=CL\_{OXC} \\times F\_{met} \\tag{2} CLm​\=CLOXC​×Fmet​(2)
+$$
+CL_m=CL_{OXC} \times F_{met} \tag{2}
+$$
 
 原型药消除的部分为
 
-(3)CLother\=CLOXC×(1−Fmet)CL\_{other}=CL\_{OXC} \\times (1-F\_{met}) \\tag{3} CLother​\=CLOXC​×(1−Fmet​)(3)
+$$
+CL_{other}=CL_{OXC} \times (1-F_{met}) \tag{3}
+$$
 
 MHD由R-(-)-MHD和S-(+)-MHD组成，母药向这两种异构体的转化比例不同，向RR-(-)-MHD转化的比例等于
 
-(4)FRS\=AUCR−(−)−MHDAUCR−(−)−MHD+AUCS−(+)−MHDFRS=\\frac{AUC\_{R-(-)-MHD}}{AUC\_{R-(-)-MHD}+AUC\_{S-(+)-MHD}} \\tag{4} FRS\=AUCR−(−)−MHD​+AUCS−(+)−MHD​AUCR−(−)−MHD​​(4)
+$$
+FRS=\frac{AUC_{R-(-)-MHD}}{AUC_{R-(-)-MHD}+AUC_{S-(+)-MHD}} \tag{4}
+$$
 
 故清除率中转化为R-(-)-MHD的部分为
 
-(5)CLmR\=CLm×FRS\=CLOXC×Fmet×FRSCL\_{mR}=CL\_m \\times FRS=CL\_{OXC} \\times F\_{met} \\times FRS \\tag{5} CLmR​\=CLm​×FRS\=CLOXC​×Fmet​×FRS(5)
+$$
+CL_{mR}=CL_m \times FRS=CL_{OXC} \times F_{met} \times FRS \tag{5}
+$$
 
 转化为S-(+)-MHD的部分为
 
-(6)CLmS\=CLm×(1−FRS)\=CLOXC×Fmet×(1−FRS)CL\_{mS}=CL\_m \\times (1-FRS)=CL\_{OXC} \\times F\_{met} \\times (1-FRS) \\tag{6} CLmS​\=CLm​×(1−FRS)\=CLOXC​×Fmet​×(1−FRS)(6)
+$$
+CL_{mS}=CL_m \times (1-FRS)=CL_{OXC} \times F_{met} \times (1-FRS) \tag{6}
+$$
 
 ### 2.4 代谢物的PK
 
-R-(-)-MHD和S-(+)-MHD均为一级消除的一室模型，分布容积分别为VRMHDV\_{RMHD}VRMHD​、VSMHDV\_{SMHD}VSMHD​；清除率分别为CLRMHDCL\_{RMHD}CLRMHD​和CLSMHDCL\_{SMHD}CLSMHD​。本模型对2种异构体使用相同的清除率，即CLMHD\=CLRMHD\=CLSMHDCL\_{MHD}=CL\_{RMHD}=CL\_{SMHD}CLMHD​\=CLRMHD​\=CLSMHD​。
+R-(-)-MHD和S-(+)-MHD均为一级消除的一室模型，分布容积分别为$V_{RMHD}$、$V_{SMHD}$；清除率分别为$CL_{RMHD}$和$CL_{SMHD}$。本模型对2种异构体使用相同的清除率，即$CL_{MHD}=CL_{RMHD}=CL_{SMHD}$。
 
 ## 3. 参数及其变异
 
@@ -58,54 +70,64 @@ R-(-)-MHD和S-(+)-MHD均为一级消除的一室模型，分布容积分别为VR
 
 | 参数 | 值 | 单位 |
 | --- | --- | --- |
-| MTTMTTMTT | 0.514 | h |
-| CLOXCCL\_{OXC}CLOXC​ | 84.8 | L/h |
-| QQQ | 55.8 | L/h |
-| VcV\_cVc​ | 131 | L |
-| VpV\_pVp​ | 456 | L |
-| FmetF\_{met}Fmet​ | 0.79 | \- |
-| FRSFRSFRS | 0.19 | \- |
-| CLMHDCL\_{MHD}CLMHD​ | 2.01 | L/h |
-| VRMHDV\_{RMHD}VRMHD​ | 23.6 | L |
-| VSMHDV\_{SMHD}VSMHD​ | 31.7 | L |
+| $MTT$ | 0.514 | h |
+| $CL_{OXC}$ | 84.8 | L/h |
+| $Q$ | 55.8 | L/h |
+| $V_c$ | 131 | L |
+| $V_p$ | 456 | L |
+| $F_{met}$ | 0.79 | \- |
+| $FRS$ | 0.19 | \- |
+| $CL_{MHD}$ | 2.01 | L/h |
+| $V_{RMHD}$ | 23.6 | L |
+| $V_{SMHD}$ | 31.7 | L |
 
 ### 3.2 固定效应
 
 使用移速生长模型纳入体重：
 
-(7)CLi\=CLp×(BWi68)0.75CL\_i=CL\_p \\times (\\frac{BW\_i}{68})^{0.75} \\tag{7} CLi​\=CLp​×(68BWi​​)0.75(7)
+$$
+CL_i=CL_p \times (\frac{BW_i}{68})^{0.75} \tag{7}
+$$
 
-(8)Vi\=Vp×(BWi68)V\_i=V\_p \\times (\\frac{BW\_i}{68}) \\tag{8} Vi​\=Vp​×(68BWi​​)(8)
+$$
+V_i=V_p \times (\frac{BW_i}{68}) \tag{8}
+$$
 
 ### 3.3 个体间变异
 
 本模型的个体间变异使用指数模型：
 
-(9)θi\=θp×eηi\\theta\_i=\\theta\_p \\times e^{\\eta\_i} \\tag{9} θi​\=θp​×eηi​(9)
+$$
+\theta_i=\theta_p \times e^{\eta_i} \tag{9}
+$$
 
-模型给出的个体间变异形式是变异系数（CV%），η\\etaη与CVCVCV的关系为
+模型给出的个体间变异形式是变异系数（CV%），$\eta$与$CV$的关系为
 
-(10)CV%\=exp⁡(Var(η))−1CV\\%=\\sqrt{\\exp({Var(\\eta))}-1} \\tag{10} CV%\=exp(Var(η))−1​(10)
+$$
+CV\%=\sqrt{\exp({Var(\eta))}-1} \tag{10}
+$$
 
 故个体间变异为：
 
-| 参数 | CV% | Var(η)Var(\\eta)Var(η) |
+| 参数 | CV% | $Var(\eta)$ |
 | --- | --- | --- |
-| MTTMTTMTT | 17.1 | 0.02882 |
-| CLOXCCL\_{OXC}CLOXC​ | 18.1 | 0.03224 |
-| VcV\_cVc​ | 23.5 | 0.05375 |
-| VRMHDV\_{RMHD}VRMHD​ | 22.2 | 0.04811 |
-| VSMHDV\_{SMHD}VSMHD​ | 22.2 | 0.04811 |
+| $MTT$ | 17.1 | 0.02882 |
+| $CL_{OXC}$ | 18.1 | 0.03224 |
+| $V_c$ | 23.5 | 0.05375 |
+| $V_{RMHD}$ | 22.2 | 0.04811 |
+| $V_{SMHD}$ | 22.2 | 0.04811 |
 
 ### 3.4 残差变异
 
 对OXC、R-(-)-MHD、S-(+)-MHD的残差均使用比例型：
 
-Cij,obs\=Cij,pred×(1+ϵij,prop)C\_{ij,obs}=C\_{ij,pred} \\times (1+\\epsilon\_{ij,prop}) Cij,obs​\=Cij,pred​×(1+ϵij,prop​)
+$$
+C_{ij,obs}=C_{ij,pred} \times (1+\epsilon_{ij,prop})
+$$
 
 比例型残差的值分别为：
 
-|  | σprop\\sigma\_{prop}σprop​ | Var(ϵ)Var(\\epsilon)Var(ϵ) |
+|  | $\sigma_{prop}$ | $Var(\epsilon)$ |
 | --- | --- | --- |
 | OXC | 0.097 | 0.009409 |
 | R-(-)-MHD | 0.017 | 0.000289 |

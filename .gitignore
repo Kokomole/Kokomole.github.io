@@ -1,5 +1,6 @@
 node_modules/
 dist/
+dist-check/
 dist-legacy/
 dist-enc-test/
 dist_enc/

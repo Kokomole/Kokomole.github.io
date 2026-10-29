@@ -53,15 +53,25 @@ function deriveTitle(slug, md) {
   return slug === 'about' ? '关于' : slug;
 }
 
-async function existingTitles() {
-  const titles = new Set();
+/**
+ * 拉一遍已有 issue，同时建两张表：标题 → 编号、meta.slug → 编号。
+ * 用 slug 兜底是为了防止标题被改过（或历史版本导入时标题生成规则不同）造成重复建。
+ */
+async function existingIssues() {
+  const byTitle = new Map();
+  const bySlug = new Map();
   for (let page = 1; ; page += 1) {
     const list = await api(`/issues?state=all&per_page=100&page=${page}`);
     if (!list.length) break;
-    for (const item of list) titles.add(item.title.trim());
+    for (const item of list) {
+      if (item.pull_request) continue;
+      byTitle.set(item.title.trim(), item.number);
+      const m = (item.body || '').match(/"slug"\s*:\s*"([^"]+)"/);
+      if (m) bySlug.set(m[1], item.number);
+    }
     if (list.length < 100) break;
   }
-  return titles;
+  return { byTitle, bySlug };
 }
 
 async function main() {
@@ -71,22 +81,35 @@ async function main() {
     return;
   }
 
-  const titles = await existingTitles();
+  const existing = await existingIssues();
   let created = 0;
-  let skipped = 0;
+  let updated = 0;
+  let unchanged = 0;
 
   for (const file of files.sort()) {
     const slug = path.basename(file, '.md');
     const md = readFileSync(path.join(LEGACY, file), 'utf8');
     const title = deriveTitle(slug, md);
+    const labels = slug === 'about' ? ['page'] : ['published'];
 
-    if (titles.has(title)) {
-      skipped += 1;
-      console.log(`跳过（已存在）：${title}`);
+    const number = existing.byTitle.get(title) ?? existing.bySlug.get(slug);
+    if (number) {
+      // 已存在就原地更新正文，保留 issue 编号、评论和链接
+      const current = await api(`/issues/${number}`);
+      if ((current.body || '').trim() === md.trim()) {
+        unchanged += 1;
+        console.log(`无变化：#${number} ${title}`);
+        continue;
+      }
+      await api(`/issues/${number}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ body: md, labels }),
+      });
+      updated += 1;
+      console.log(`已更新 #${number}：${title}`);
       continue;
     }
 
-    const labels = slug === 'about' ? ['page'] : ['published'];
     await api('/issues', {
       method: 'POST',
       body: JSON.stringify({ title, body: md, labels }),
@@ -95,7 +118,7 @@ async function main() {
     console.log(`已创建：${title}`);
   }
 
-  console.log(`\n完成：新建 ${created} 个，跳过 ${skipped} 个。`);
+  console.log(`\n完成：新建 ${created} 个，更新 ${updated} 个，无变化 ${unchanged} 个。`);
   console.log('提醒：用 GITHUB_TOKEN 创建的 issue 不会自动触发构建，请手动运行一次 "Build & Deploy"。');
 }
 

@@ -78,6 +78,25 @@ function makeTurndown() {
     },
   });
 
+  // 公式：旧站是构建期用 KaTeX 渲染好的，HTML 里只剩排版用的 span。
+  // 但每个 span 里都有 <annotation encoding="application/x-tex"> 保存着原始 LaTeX，
+  // 抓它就能把公式还原成 $...$ / $$...$$，而不是退化成 "N(μ,σ2)" 这种残缺文本。
+  td.addRule('katexMath', {
+    filter: (node) => {
+      if (node.nodeName !== 'SPAN') return false;
+      return /(^|\s)katex(\s|$)/.test(node.getAttribute('class') || '');
+    },
+    replacement: (_content, node) => {
+      const ann = node.querySelector('annotation[encoding="application/x-tex"]');
+      const tex = (ann?.textContent || '').trim();
+      if (!tex) return node.textContent || '';
+      const isDisplay =
+        (node.getAttribute('class') || '').includes('katex-display') ||
+        Boolean(node.closest?.('.katex-display'));
+      return isDisplay ? `\n\n$$\n${tex}\n$$\n\n` : `$${tex}$`;
+    },
+  });
+
   // 图片：保留原始地址，统一成绝对地址，方便在 issue 里直接看到
   td.addRule('absImage', {
     filter: 'img',
