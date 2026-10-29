@@ -205,6 +205,11 @@ main {
   background: var(--hairline);
 }
 
+/* 只有每年第一行有年份时才画那条短线，其余行留空 */
+.year-cell--blank::after {
+  display: none;
+}
+
 .post-date {
   font-size: 14px;
   color: var(--text-dim);
