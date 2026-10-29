@@ -3,6 +3,7 @@ import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
 import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
@@ -10,14 +11,60 @@ import GithubSlugger from 'github-slugger';
 
 const parser = unified().use(remarkParse).use(remarkGfm).use(remarkMath);
 
+/**
+ * GitHub 粘贴图片时经常插入的是原生 HTML（<img width="600" src="…">），
+ * 所以必须允许裸 HTML 通过，否则图片会被整块丢掉。
+ * 这里只放行，随后再做一次轻量清洗，挡掉脚本类标签和事件属性。
+ */
+const BAD_TAGS = new Set([
+  'script',
+  'iframe',
+  'object',
+  'embed',
+  'style',
+  'link',
+  'meta',
+  'form',
+  'input',
+  'button',
+  'base',
+]);
+
+function rehypeSanitizeLight() {
+  return (tree) => {
+    const walk = (node) => {
+      if (!Array.isArray(node.children)) return;
+      node.children = node.children.filter(
+        (child) => !(child.type === 'element' && BAD_TAGS.has(child.tagName))
+      );
+      for (const child of node.children) {
+        if (child.type === 'element' && child.properties) {
+          for (const key of Object.keys(child.properties)) {
+            if (/^on/i.test(key)) delete child.properties[key];
+            const value = child.properties[key];
+            if ((key === 'href' || key === 'src') && /^\s*javascript:/i.test(String(value))) {
+              delete child.properties[key];
+            }
+          }
+        }
+        walk(child);
+      }
+    };
+    walk(tree);
+  };
+}
+
 const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
   .use(remarkMath)
-  .use(remarkRehype, { allowDangerousHtml: false })
+  .use(remarkRehype, { allowDangerousHtml: true })
+  .use(rehypeRaw)
+  .use(rehypeSanitizeLight)
   .use(rehypeSlug)
   .use(rehypeKatex, { throwOnError: false, strict: false, output: 'html' })
   .use(rehypeStringify);
+
 
 function nodeText(node) {
   if (!node) return '';
