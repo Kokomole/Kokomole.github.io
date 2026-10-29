@@ -14,7 +14,7 @@
     "migrate": "node scripts/migrate-legacy.mjs"
   },
   "dependencies": {
-    "astro": "6.4.8",
+    "astro": "7.3.3",
     "github-slugger": "2.0.0",
     "katex": "0.16.11",
     "rehype-katex": "7.0.1",
