@@ -4,7 +4,8 @@ import content from '../data/content.json';
 
 const posts = content.posts as any[];
 
-const fmt = (p: any) => `${p.month}月${p.day}日`;
+const pad = (n: number) => String(n).padStart(2, '0');
+const fmt = (p: any) => `${pad(p.month)} 月 ${pad(p.day)} 日`;
 
 let lastYear = 0;
 const rows = posts.map((p) => {
@@ -15,7 +16,7 @@ const rows = posts.map((p) => {
 ---
 
 <BaseLayout>
-  <h2 class="section-title">📰｜POST</h2>
+  <h2 class="section-title">全部帖子</h2>
 
   {
     rows.length === 0 ? (
