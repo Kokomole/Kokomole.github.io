@@ -13,49 +13,44 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const isWin = process.platform === 'win32';
-const npx = isWin ? 'npx.cmd' : 'npx';
+const CLI = path.join(ROOT, 'node_modules', 'staticrypt', 'cli', 'index.js');
+const DIST = path.join(ROOT, 'dist');
 
-function run(args) {
-  const res = spawnSync(npx, ['--no-install', ...args], {
-    cwd: ROOT,
-    stdio: 'inherit',
-    env: process.env,
-    shell: isWin,
-  });
-  if (res.status !== 0) {
-    throw new Error(`staticrypt 退出码 ${res.status}`);
-  }
+function fail(msg) {
+  console.error(`\n[encrypt] ${msg}\n`);
+  process.exit(1);
 }
-
-const password = process.env.BLOG_PASSWORD;
-const salt = process.env.BLOG_SALT;
 
 if (process.env.SKIP_ENCRYPT === '1') {
   console.log('[encrypt] SKIP_ENCRYPT=1，跳过加密');
   process.exit(0);
 }
 
+const password = (process.env.BLOG_PASSWORD || '').trim();
+const salt = (process.env.BLOG_SALT || '').trim().toLowerCase();
+
+console.log(`[encrypt] BLOG_PASSWORD: ${password ? `已设置（${password.length} 位）` : '缺失'}`);
+console.log(`[encrypt] BLOG_SALT: ${salt ? `已设置（${salt.length} 位）` : '缺失'}`);
+
 if (!password) {
-  console.error('[encrypt] 缺少 BLOG_PASSWORD。本地调试请设 SKIP_ENCRYPT=1。');
-  process.exit(1);
+  fail('缺少 BLOG_PASSWORD。去 Settings → Secrets and variables → Actions 建一个同名 secret。');
 }
-if (!salt || !/^[0-9a-f]{32}$/i.test(salt)) {
-  console.error('[encrypt] 缺少合法的 BLOG_SALT（32 位 hex，用 `openssl rand -hex 16` 生成）。');
-  process.exit(1);
+if (!/^[0-9a-f]{32}$/.test(salt)) {
+  fail(
+    'BLOG_SALT 必须是 32 位十六进制字符串（例如 e3ffebfb9e8ef412156eded2f93cfe4e）。' +
+      `当前长度 ${salt.length}，内容是否含空格或换行？`
+  );
+}
+if (!existsSync(path.join(DIST, 'index.html'))) {
+  fail('dist/index.html 不存在，上一步构建可能失败了。');
+}
+if (!existsSync(CLI)) {
+  fail(`找不到 staticrypt：${CLI}。检查 npm install 是否成功（它装在 devDependencies 里）。`);
 }
 
-// 密码通过环境变量传，避免出现在进程列表和 CI 日志里；
-// 老版本 staticrypt 不认这个变量，那就退回 -p。
-const help = spawnSync(npx, ['--no-install', 'staticrypt', '--help'], {
-  cwd: ROOT,
-  encoding: 'utf8',
-  shell: isWin,
-});
-const supportsEnvPassword = /STATICRYPT_PASSWORD/.test(help.stdout || '');
-
+// 直接调用 CLI 入口，绕开 npx（npx 在不同 npm 版本里参数行为不一致，是之前 CI 失败的原因之一）
 const args = [
-  'staticrypt',
+  CLI,
   'dist',
   '-r',
   '-d',
@@ -66,6 +61,7 @@ const args = [
   salt,
   '--remember',
   '30',
+  '--short',
   '--template-title',
   '2014色彩漫游',
   '--template-button',
@@ -82,20 +78,23 @@ const args = [
   '#fdfdf9',
 ];
 
-if (!supportsEnvPassword) args.push('-p', password);
-
 console.log('[encrypt] 开始加密 dist/ …');
-run(args);
+const res = spawnSync(process.execPath, args, {
+  cwd: ROOT,
+  stdio: 'inherit',
+  env: { ...process.env, STATICRYPT_PASSWORD: password },
+});
 
-const encRoot = path.join(ROOT, 'dist_enc');
-const encDist = path.join(encRoot, 'dist');
+if (res.error) fail(`无法启动 staticrypt：${res.error.message}`);
+if (res.status !== 0) fail(`staticrypt 退出码 ${res.status}，看上面的输出。`);
+
+const encDist = path.join(ROOT, 'dist_enc', 'dist');
 if (!existsSync(encDist)) {
-  console.error('[encrypt] 没找到 dist_enc/dist，staticrypt 的输出结构可能变了。');
-  process.exit(1);
+  fail('没找到 dist_enc/dist，staticrypt 的输出结构可能变了。');
 }
 
-rmSync(path.join(ROOT, 'dist'), { recursive: true, force: true });
-renameSync(encDist, path.join(ROOT, 'dist'));
-rmSync(encRoot, { recursive: true, force: true });
+rmSync(DIST, { recursive: true, force: true });
+renameSync(encDist, DIST);
+rmSync(path.join(ROOT, 'dist_enc'), { recursive: true, force: true });
 
 console.log('[encrypt] 完成 → dist/');
