@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-legacy/
+dist-enc-test/
+dist_enc/
+.astro/
+.cache/
+.workbuddy/
+src/data/content.json
+src/data/content.json.bak
+package-lock.json
+tmpdir_test.md
+.env
+.env.*
+.DS_Store
+.staticrypt.json

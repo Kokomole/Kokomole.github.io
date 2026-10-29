@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import content from '../data/content.json';
+
+const posts = content.posts as any[];
+
+const fmt = (p: any) => `${p.month}月 ${String(p.day).padStart(2, '0')}`;
+
+let lastYear = 0;
+const rows = posts.map((p) => {
+  const isFirstOfYear = p.year !== lastYear;
+  lastYear = p.year;
+  return { post: p, showYear: isFirstOfYear };
+});
+---
+
+<BaseLayout>
+  <h2 class="section-title">📰｜POST</h2>
+
+  {
+    rows.length === 0 ? (
+      <p class="empty">还没有文章。在 GitHub 新建 issue 并打上 published 标签即可。</p>
+    ) : (
+      <ol class="post-list">
+        {rows.map(({ post, showYear }) => (
+          <li class="post-row">
+            {showYear && <div class="year-cell">{post.year}</div>}
+            {!showYear && <div class="year-cell" aria-hidden="true"></div>}
+            <time class="post-date" datetime={post.date}>
+              {fmt(post)}
+            </time>
+            <a class="post-link" href={`/post/${post.slug}/`}>
+              {post.title}
+              {post.pinned && <span class="pin-mark" title="置顶">•</span>}
+            </a>
+            {showYear && <div class="year-inline">{post.year}</div>}
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</BaseLayout>

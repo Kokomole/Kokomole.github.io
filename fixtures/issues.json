@@ -1,0 +1,37 @@
+[
+  {
+    "number": 101,
+    "title": "在 GitHub Issue 里写博客的第一篇",
+    "createdAt": "2026-05-25T02:10:00Z",
+    "labels": ["published", "随笔"],
+    "body": "这是一篇用来验证管线的测试文章。图片、公式、代码块、列表都应该正常工作。\n\n## 为什么是 Issue\n\n因为写作界面干净、图片可以直接粘贴上传、手机上也能写。剩下的交给自动化。\n\n- 新建 issue\n- 打上 `published` 标签\n- 等一分钟\n\n> 引用块也要有正确的缩进和左边线。\n\n```python\ndef hello(name: str) -> str:\n    return f\"hello, {name}\"\n```\n\n就这样。"
+  },
+  {
+    "number": 102,
+    "title": "行内公式与块级公式",
+    "createdAt": "2026-01-13T09:00:00Z",
+    "labels": ["published", "技术"],
+    "body": "行内公式写作 $E = mc^2$，行距不应该被撑开太多。\n\n块级公式：\n\n$$\n\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx = \\sqrt{\\pi}\n$$\n\n再看一个矩阵：\n\n$$\n\\mathbf{A} = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}, \\qquad \\det(\\mathbf{A}) = ad - bc\n$$\n\n## 注意\n\n公式里的下划线和星号不会被 Markdown 吃掉，因为渲染在解析之后进行。"
+  },
+  {
+    "number": 103,
+    "title": "图片粘贴测试",
+    "createdAt": "2025-10-03T12:00:00Z",
+    "labels": ["published", "随笔"],
+    "body": "在 issue 编辑框里直接 Ctrl+V 粘贴截图，GitHub 会自动上传并插入一个链接。\n\n![示例图片](/images/sample.svg)\n\n下面是图注之后的正文，用来检查图片的圆角和上下留白。\n\n还有一段长文本，用来观察 640px 容器里的换行和行高是否舒服。中文正文在 16px / 1.75 的行高下大约每行 40 个汉字，这个密度接近纸质书，适合长时间阅读；英文长单词需要用 `overflow-wrap: break-word` 兜底，否则会把容器撑破。"
+  },
+  {
+    "number": 104,
+    "title": "A note on typography",
+    "createdAt": "2024-07-16T09:00:00Z",
+    "labels": ["published", "技术"],
+    "body": "## Heading level two\n\nInter 用于拉丁字符，中文回退到 PingFang SC / Microsoft YaHei。因为 Inter 没有中文字形，混排时两者的基线要靠 `font-feature-settings` 和合适的行高对齐。\n\n### Heading level three\n\n| 项目 | 值 |\n| --- | --- |\n| 容器宽度 | 640px |\n| 正文字号 | 16px |\n| 行高 | 1.75 |\n\n1. 有序列表\n2. 第二项\n3. 第三项\n\n最后一行。"
+  },
+  {
+    "number": 105,
+    "title": "关于",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "labels": ["page"],
+    "body": "<!-- meta {\"slug\":\"about\"} -->\n\n这里是一个人的自留地。\n\n平时写点技术笔记、读书摘录和琐碎的日常。\n\n- GitHub：[@Kokomole](https://github.com/Kokomole)\n- 邮箱：hello@example.com\n\n> 本站有访问密码。如果忘记了，也没有别的办法——去找站长要。\n\n要退出登录（清除本机记住的密码），访问 [退出](#staticrypt_logout)。"
+  }
+]

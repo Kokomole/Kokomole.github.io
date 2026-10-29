@@ -1,0 +1,30 @@
+name: Import legacy posts
+
+# 一次性使用：把 legacy/*.md 批量建成 issue。
+# 注意：GITHUB_TOKEN 创建的 issue 不会触发其他工作流，
+# 所以跑完这个之后要手动再运行一次 "Build & Deploy"。
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Create issues from legacy/*.md
+        run: node scripts/import-legacy.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}

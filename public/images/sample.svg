@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#f2efe7"/>
+  <circle cx="880" cy="200" r="132" fill="#e8ded1"/>
+  <rect x="120" y="360" width="420" height="14" rx="7" fill="#d8cfbf"/>
+  <rect x="120" y="404" width="300" height="14" rx="7" fill="#dfd7c8"/>
+  <rect x="120" y="448" width="360" height="14" rx="7" fill="#e4dccd"/>
+  <text x="120" y="250" font-family="Inter, sans-serif" font-size="86" font-weight="600" fill="#2b2926">sample image</text>
+  <text x="120" y="512" font-family="Inter, sans-serif" font-size="26" fill="#8a857a">用于本地预览的占位图 · 1200 × 630</text>
+</svg>
