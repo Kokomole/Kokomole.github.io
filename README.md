@@ -1,8 +1,6 @@
 # 2014色彩漫游
 
 用 GitHub Issue 当 CMS 的静态博客。写完 issue、打上 `published` 标签，GitHub Actions 自动构建、加密、发布到 Pages。
-
-- 站点：https://kokomole.github.io
 - 写文章：仓库 → Issues → New issue → 打 `published` 标签
 
 ## 本地这份代码不是必需品
