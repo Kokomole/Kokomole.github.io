@@ -4,7 +4,6 @@
 
 - 站点：https://kokomole.github.io
 - 写文章：仓库 → Issues → New issue → 打 `published` 标签
-- 使用手册：[怎么写博客.md](./怎么写博客.md)
 
 ## 本地这份代码不是必需品
 
